@@ -1,4 +1,4 @@
-package p4_group_8_repo;
+package uk.ac.nott.cs.comp2013.frogger.controller;
 
 
 import java.util.ArrayList;
@@ -11,11 +11,8 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.Scene.*;
-import javafx.beans.value.*;
+import uk.ac.nott.cs.comp2013.frogger.model.Actor;
 
 
 public abstract class World extends Pane {

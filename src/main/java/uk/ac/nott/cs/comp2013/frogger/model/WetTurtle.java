@@ -1,8 +1,8 @@
-package p4_group_8_repo;
+package uk.ac.nott.cs.comp2013.frogger.model;
 
 import javafx.scene.image.Image;
 
-public class WetTurtle extends Actor{
+public class WetTurtle extends Actor {
 	Image t1;
 	Image t2;
 	Image t3;
@@ -15,19 +15,19 @@ public class WetTurtle extends Actor{
 	public void act(long now) {
 
 				if (now/900000000  % 4 ==0) {
-					setImage(turtle2);
+					setImage(t2);
 					sunk = false;
 					
 				}
 				else if (now/900000000 % 4 == 1) {
-					setImage(turtle1);
+					setImage(t1);
 					sunk = false;
 				}
 				else if (now/900000000 %4 == 2) {
-					setImage(turtle3);
+					setImage(t3);
 					sunk = false;
 				} else if (now/900000000 %4 == 3) {
-					setImage(turtle4);
+					setImage(t4);
 					sunk = true;
 				}
 			
@@ -38,10 +38,10 @@ public class WetTurtle extends Actor{
 			setX(600);
 	}
 	public WetTurtle(int xpos, int ypos, int s, int w, int h) {
-		t1 = new Image("file:src/p4_group_8_repo/TurtleAnimation1.png", h, w, true, true);
-		t2 = new Image("file:src/p4_group_8_repo/TurtleAnimation2Wet.png", h, w, true, true);
-		t3 = new Image("file:src/p4_group_8_repo/TurtleAnimation3Wet.png", w, h, true, true);
-		t4 = new Image("file:src/p4_group_8_repo/TurtleAnimation4Wet.png", w, h, true, true);
+		t1 = new Image("TurtleAnimation1.png", h, w, true, true);
+		t2 = new Image("TurtleAnimation2Wet.png", h, w, true, true);
+		t3 = new Image("TurtleAnimation3Wet.png", w, h, true, true);
+		t4 = new Image("TurtleAnimation4Wet.png", w, h, true, true);
 		setX(xpos);
 		setY(ypos);
 		speed = s;

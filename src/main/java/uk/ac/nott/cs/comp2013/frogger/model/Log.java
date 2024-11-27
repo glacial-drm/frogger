@@ -1,4 +1,4 @@
-package p4_group_8_repo;
+package uk.ac.nott.cs.comp2013.frogger.model;
 
 import javafx.scene.image.Image;
 
