@@ -1,8 +1,8 @@
 package uk.ac.nott.cs.comp2013.frogger.view;
-import com.lagocp.gameEngine.sprite.Sprite;
-import com.lagocp.gameEngine.ui.UI;
-import com.lagocp.sprites.Car;
-import com.lagocp.sprites.Frog;
+//import com.lagocp.gameEngine.sprite.Sprite;
+//import com.lagocp.gameEngine.ui.UI;
+//import com.lagocp.sprites.Car;
+//import com.lagocp.sprites.Frog;
 
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -23,7 +23,7 @@ import javafx.scene.text.TextAlignment;
  * @author Phillip
  *
  */
-public class FroggerUI extends UI {
+public class FroggerUI /*extends UI*/ {
     private StackPane base;
 
     private BorderPane stats;
@@ -39,7 +39,7 @@ public class FroggerUI extends UI {
     private StackPane gameOverPane;
 
     public FroggerUI(Canvas canvas) {
-        super(canvas);
+        //super(canvas);
         base = new StackPane();
 
         uiPane = new BorderPane(canvas);
@@ -53,11 +53,12 @@ public class FroggerUI extends UI {
         gameOverPane.setStyle("-fx-background-color: transparent;");
     }
 
-    @Override
+    //@Override
     public void create() {
     }
 
-    @Override
+    //@Override
+    /*
     public void placeCanvas(Group root) {
         BorderPane.setAlignment(levelLabel, Pos.CENTER);
         uiPane.setTop(levelLabel);
@@ -68,8 +69,10 @@ public class FroggerUI extends UI {
 
         root.getChildren().add(base);
     }
+    */
 
-    @Override
+    //@Override
+    /*
     public void updateUI(Sprite... sprites) {
         for (Sprite sprite : sprites) {
             if (sprite instanceof Frog) {
@@ -85,8 +88,9 @@ public class FroggerUI extends UI {
             }
         }
     }
+    */
 
-    @Override
+    //@Override
     public void initStats() {
         // Initialize UI elements relevant to stats
         stats = new BorderPane();

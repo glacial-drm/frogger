@@ -1,10 +1,11 @@
 plugins {
+    application
     id("java")
     id("org.openjfx.javafxplugin") version "0.1.0"
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
+group = "uk.ac.nott.cs.comp2013"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
@@ -18,6 +19,11 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+application {
+    mainClass = "uk.ac.nott.cs.comp2013.frogger.Main"
+}
+
 javafx {
     version = "22.0.1"
     modules = listOf("javafx.graphics", "javafx.fxml", "javafx.web", "javafx.media")

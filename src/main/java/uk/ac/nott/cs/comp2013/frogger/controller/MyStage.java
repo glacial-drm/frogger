@@ -28,7 +28,7 @@ public class MyStage extends World {
 	}
 	
 	public void playMusic() {
-		String musicFile = "Snake_Charmer.mp3";
+		String musicFile = "src/main/resources/Snake_Charmer.mp3";
 		Media sound = new Media(new File(musicFile).toURI().toString());
 		mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
