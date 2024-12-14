@@ -29,7 +29,7 @@ public class Main extends Application {
 		Obstacle obstacle1 = new Obstacle("file:src/main/resources/truck2Right.png", 100, 100,2, 200, 100 );
 		Obstacle obstacle2 = new Obstacle("file:src/main/resources/truck1Right.png",0,  150, 1, 200, 100);
 
-		BackgroundImage froggerback = new BackgroundImage("file:src/main/resources/Screen Shot 2017-05-29 at 10.02.14 PM.png");
+		BackgroundImage froggerback = new BackgroundImage("file:src/main/resources/arcadee.png");
 	    
 		background.add(froggerback);
 		
