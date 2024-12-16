@@ -14,22 +14,22 @@ public class Turtle extends Actor {
 
 				if (now/900000000  % 3 ==0) {
 					setImage(turtle2);
-					
+
 				}
 				else if (now/900000000 % 3 == 1) {
 					setImage(turtle1);
-					
+
 				}
 				else if (now/900000000 %3 == 2) {
 					setImage(turtle3);
-					
+
 				}
 			
 		move(speed , 0);
 		if (getX() > 600 && speed>0)
-			setX(-200);
-		if (getX() < -75 && speed<0)
-			setX(600);
+			setX(-180);
+		if (getX() < -300 && speed<0)
+			setX(700);
 	}
 	public Turtle(int xpos, int ypos, int s, int w, int h) {
 		turtle1 = new Image("TurtleAnimation1.png", w, h, true, true);

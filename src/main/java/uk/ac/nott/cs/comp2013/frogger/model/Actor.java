@@ -10,8 +10,32 @@ import java.util.ArrayList;
 public abstract class Actor extends ImageView{
 
     public void move(double dx, double dy) {
+        if(dx < 0){ // right moving
+            wrap(false);
+        }
+        else if(dx > 0){ // left moving
+            wrap(true);
+        }
         setX(getX() - dx);
         setY(getY() - dy);
+    }
+
+    public void wrap(boolean direction){
+        if(direction){
+            if(getX() + getWidth() == 0){ // if left/right edge collides with boundary of window, reposition
+                System.out.println("hit the LEFT edge\n");
+                //some sort of wait/block mechanism until we are clear of the width of the item
+                setX(600);
+            }
+        }
+        else{
+            if(getX() == 600){
+                System.out.println("hit the RIGHT edge\n");
+                setX(0-getWidth());
+            }
+        }
+
+
     }
 
     public World getWorld() {
