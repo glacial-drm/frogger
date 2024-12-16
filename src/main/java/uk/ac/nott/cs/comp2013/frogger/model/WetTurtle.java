@@ -7,7 +7,7 @@ public class WetTurtle extends Actor {
 	Image t2;
 	Image t3;
 	Image t4;
-	int speed;
+	private int speed;
 	int i = 1;
 	boolean bool = true;
 	boolean sunk = false;
@@ -17,7 +17,7 @@ public class WetTurtle extends Actor {
 				if (now/900000000  % 4 ==0) {
 					setImage(t2);
 					sunk = false;
-					
+
 				}
 				else if (now/900000000 % 4 == 1) {
 					setImage(t1);
@@ -30,12 +30,12 @@ public class WetTurtle extends Actor {
 					setImage(t4);
 					sunk = true;
 				}
-			
+
 		move(speed , 0);
 		if (getX() > 600 && speed>0)
-			setX(-200);
-		if (getX() < -75 && speed<0)
-			setX(600);
+			setX(-180);
+		if (getX() < -300 && speed<0)
+			setX(700);
 	}
 	public WetTurtle(int xpos, int ypos, int s, int w, int h) {
 		t1 = new Image("TurtleAnimation1.png", h, w, true, true);
