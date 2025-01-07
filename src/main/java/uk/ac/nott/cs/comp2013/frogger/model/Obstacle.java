@@ -3,6 +3,7 @@ package uk.ac.nott.cs.comp2013.frogger.model;
 import javafx.scene.image.Image;
 
 public class Obstacle extends Actor {
+
 	private int speed;
 	@Override
 	public void act(long now) {

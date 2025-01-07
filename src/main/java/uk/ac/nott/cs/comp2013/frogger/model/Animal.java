@@ -35,8 +35,8 @@ public class Animal extends Actor {
 
 	public Animal(String imageLink) {
 		setImage(new Image(imageLink, imgSize, imgSize, true, true));
-		setX(300);
-		setY(679.8+movement);
+		setX(/*300*/30);
+		setY(/*679.8*/166/*+movement*/);
 		imgW1 = new Image("froggerUp.png", imgSize, imgSize, true, true);
 		imgA1 = new Image("froggerLeft.png", imgSize, imgSize, true, true);
 		imgS1 = new Image("froggerDown.png", imgSize, imgSize, true, true);
@@ -141,8 +141,8 @@ public class Animal extends Actor {
 			setX(300);
 			setY(679.8+movement);
 		}
-		if (getX()<0) {
-			move(movement*2, 0);
+		if (getX() < 0 || getX() > 575) {
+			waterDeath = true;
 		}
 		if (carDeath) {
 			noMove = true;
@@ -204,49 +204,45 @@ public class Animal extends Actor {
 			
 		}
 		
-		if (getX()>600) {
-			move(-movement*2, 0);
+		if (getX()>600) { // Prevent movement off right board
+			//move(-movement*2, 0);
 		}
-		if (getIntersectingObjects(Obstacle.class).size() >= 1) {
+		if (!getIntersectingObjects(Obstacle.class).isEmpty()) { // Kill on car/truck collision
 			carDeath = true;
 		}
-		if (getX() == 240 && getY() == 82) {
+		if (getX() == 240 && getY() == 82) { // Respawn on frog home(? only checks one of them)
 			stop = true;
 		}
-		if (getIntersectingObjects(Log.class).size() >= 1 && !noMove) {
-			if(getIntersectingObjects(Log.class).get(0).getLeft())
-				move(-2,0);
-			else
-				move (.75,0);
+
+		if (!getIntersectingObjects(Log.class).isEmpty() && !noMove) { // Stood on Log
+			move(getIntersectingObjects(Log.class).getFirst().getSpeed(), 0);
 		}
-		else if (getIntersectingObjects(Turtle.class).size() >= 1 && !noMove) {
-			move(-1,0);
+		else if (!getIntersectingObjects(Turtle.class).isEmpty() && !noMove) { // Stood on Turtle
+			move(getIntersectingObjects(Turtle.class).getFirst().getSpeed(),0);
 		}
-		else if (getIntersectingObjects(WetTurtle.class).size() >= 1) {
-			if (getIntersectingObjects(WetTurtle.class).get(0).isSunk()) {
+		else if (!getIntersectingObjects(WetTurtle.class).isEmpty()) { // Stood on Wet Turtle
+			if (getIntersectingObjects(WetTurtle.class).getFirst().isSunk()) { // Kill if stood on sunken wet turtle?
 				waterDeath = true;
 			} else {
-				move(-1,0);
+				move(getIntersectingObjects(WetTurtle.class).getFirst().getSpeed(),0);
 			}
 		}
-		else if (getIntersectingObjects(End.class).size() >= 1) {
+		else if (!getIntersectingObjects(End.class).isEmpty()) { // Respawn on end (frog home)
 			inter = (ArrayList<End>) getIntersectingObjects(End.class);
-			if (getIntersectingObjects(End.class).get(0).isActivated()) {
+			if (getIntersectingObjects(End.class).getFirst().isActivated()) { // In case that home is already activated
 				end--;
 				points-=50;
 			}
 			points+=50;
 			changeScore = true;
 			w=800;
-			getIntersectingObjects(End.class).get(0).setEnd();
+			getIntersectingObjects(End.class).getFirst().setEnd();
 			end++;
 			setX(300);
 			setY(679.8+movement);
 		}
-		else if (getY()<413){
+		else if (getY()<413){ // Death on water tiles
 			waterDeath = true;
-			//setX(300);
-			//setY(679.8+movement);
 		}
 	}
 	public boolean getStop() {
@@ -264,120 +260,5 @@ public class Animal extends Actor {
 		}
 		return false;
 		
-	}
-
-
-	public static class WetTurtle extends Actor {
-		Image t1;
-		Image t2;
-		Image t3;
-		Image t4;
-		int speed;
-		int i = 1;
-		boolean bool = true;
-		boolean sunk = false;
-		@Override
-		public void act(long now) {
-
-					if (now/900000000  % 4 ==0) {
-						setImage(t2);
-						sunk = false;
-
-					}
-					else if (now/900000000 % 4 == 1) {
-						setImage(t1);
-						sunk = false;
-					}
-					else if (now/900000000 %4 == 2) {
-						setImage(t3);
-						sunk = false;
-					} else if (now/900000000 %4 == 3) {
-						setImage(t4);
-						sunk = true;
-					}
-
-			move(speed , 0);
-			if (getX() > 600 && speed>0)
-				setX(-200);
-			if (getX() < -75 && speed<0)
-				setX(600);
-		}
-		public WetTurtle(int xpos, int ypos, int s, int w, int h) {
-			t1 = new Image("TurtleAnimation1.png", h, w, true, true);
-			t2 = new Image("TurtleAnimation2Wet.png", h, w, true, true);
-			t3 = new Image("TurtleAnimation3Wet.png", w, h, true, true);
-			t4 = new Image("TurtleAnimation4Wet.png", w, h, true, true);
-			setX(xpos);
-			setY(ypos);
-			speed = s;
-			setImage(t2);
-		}
-		public boolean isSunk() {
-			return sunk;
-		}
-	}
-
-	public static class Turtle extends Actor {
-		Image turtle1;
-		Image turtle2;
-		Image turtle3;
-		public int speed;
-		int i = 1;
-		boolean bool = true;
-		@Override
-		public void act(long now) {
-
-					if (now/900000000  % 3 ==0) {
-						setImage(turtle2);
-
-					}
-					else if (now/900000000 % 3 == 1) {
-						setImage(turtle1);
-
-					}
-					else if (now/900000000 %3 == 2) {
-						setImage(turtle3);
-
-					}
-
-			move(speed , 0);
-			if (getX() > 600 && speed>0)
-				setX(-200);
-			if (getX() < -75 && speed<0)
-				setX(600);
-		}
-		public Turtle(int xpos, int ypos, int s, int w, int h) {
-			turtle1 = new Image("TurtleAnimation1.png", w, h, true, true);
-			turtle2 = new Image("TurtleAnimation2.png", w, h, true, true);
-			turtle3 = new Image("TurtleAnimation3.png", w, h, true, true);
-			setX(xpos);
-			setY(ypos);
-			speed = s;
-			setImage(turtle2);
-		}
-	}
-
-	public static class Log extends Actor {
-
-		private double speed;
-		@Override
-		public void act(long now) {
-			move(speed , 0);
-			if (getX()>600 && speed>0)
-				setX(-180);
-			if (getX()<-300 && speed<0)
-				setX(700);
-		}
-
-		public Log(String imageLink, int size, int xpos, int ypos, double s) {
-			setImage(new Image(imageLink, size,size, true, true));
-			setX(xpos);
-			setY(ypos);
-			speed = s;
-
-		}
-		public boolean getLeft() {
-			return speed < 0;
-		}
 	}
 }

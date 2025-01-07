@@ -50,4 +50,5 @@ public class WetTurtle extends Actor {
 	public boolean isSunk() {
 		return sunk;
 	}
+	public int getSpeed() {return speed; }
 }
