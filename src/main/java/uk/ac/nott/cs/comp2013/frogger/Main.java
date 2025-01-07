@@ -23,6 +23,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 	    background = new MyStage();
+		background.setMaxHeight(800);
+		background.setMaxWidth(600);
 	    Scene scene  = new Scene(background,600,800);
 	    
 		Obstacle obstacle = new Obstacle("file:src/main/resources/truck1Right.png", 25, 25, 3, 200, 100);

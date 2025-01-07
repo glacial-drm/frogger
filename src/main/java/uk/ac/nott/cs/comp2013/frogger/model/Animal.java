@@ -35,8 +35,8 @@ public class Animal extends Actor {
 
 	public Animal(String imageLink) {
 		setImage(new Image(imageLink, imgSize, imgSize, true, true));
-		setX(/*300*/30);
-		setY(/*679.8*/166/*+movement*/);
+		setX(300);
+		setY(679.8+movement);
 		imgW1 = new Image("froggerUp.png", imgSize, imgSize, true, true);
 		imgA1 = new Image("froggerLeft.png", imgSize, imgSize, true, true);
 		imgS1 = new Image("froggerDown.png", imgSize, imgSize, true, true);
