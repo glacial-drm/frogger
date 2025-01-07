@@ -40,4 +40,5 @@ public class Turtle extends Actor {
 		speed = s;
 		setImage(turtle2);
 	}
+	public int getSpeed() {return speed; }
 }

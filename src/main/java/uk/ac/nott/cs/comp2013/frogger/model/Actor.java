@@ -21,16 +21,15 @@ public abstract class Actor extends ImageView{
     }
 
     public void wrap(boolean direction){
-        if(direction){
-            if(getX() + getWidth() == 0){ // if left/right edge collides with boundary of window, reposition
-                System.out.println("hit the LEFT edge\n");
-                //some sort of wait/block mechanism until we are clear of the width of the item
+        if(direction){ // if left/right edge collides with boundary of window, reposition
+            if(getX() + getWidth() == 0){
+                //System.out.println("hit the LEFT edge\n");
                 setX(600);
             }
         }
         else{
             if(getX() == 600){
-                System.out.println("hit the RIGHT edge\n");
+                //System.out.println("hit the RIGHT edge\n");
                 setX(0-getWidth());
             }
         }
@@ -72,7 +71,7 @@ public abstract class Actor extends ImageView{
                 break;
             }
         }
-        return someArray.get(0);
+        return someArray.getFirst();
     }
 
     public abstract void act(long now);
