@@ -12,18 +12,18 @@ public class Turtle extends Actor {
 	@Override
 	public void act(long now) {
 
-				if (now/900000000  % 3 ==0) {
-					setImage(turtle2);
+		if (now/900000000  % 3 ==0) {
+			setImage(turtle2);
 
-				}
-				else if (now/900000000 % 3 == 1) {
-					setImage(turtle1);
+		}
+		else if (now/900000000 % 3 == 1) {
+			setImage(turtle1);
 
-				}
-				else if (now/900000000 %3 == 2) {
-					setImage(turtle3);
+		}
+		else if (now/900000000 %3 == 2) {
+			setImage(turtle3);
 
-				}
+		}
 			
 		move(speed , 0);
 		if (getX() > 600 && speed>0)

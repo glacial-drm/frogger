@@ -14,22 +14,22 @@ public class WetTurtle extends Actor {
 	@Override
 	public void act(long now) {
 
-				if (now/900000000  % 4 ==0) {
-					setImage(t2);
-					sunk = false;
+		if (now/900000000  % 4 ==0) {
+			setImage(t2);
+			sunk = false;
 
-				}
-				else if (now/900000000 % 4 == 1) {
-					setImage(t1);
-					sunk = false;
-				}
-				else if (now/900000000 %4 == 2) {
-					setImage(t3);
-					sunk = false;
-				} else if (now/900000000 %4 == 3) {
-					setImage(t4);
-					sunk = true;
-				}
+		}
+		else if (now/900000000 % 4 == 1) {
+			setImage(t1);
+			sunk = false;
+		}
+		else if (now/900000000 %4 == 2) {
+			setImage(t3);
+			sunk = false;
+		} else if (now/900000000 %4 == 3) {
+			setImage(t4);
+			sunk = true;
+		}
 
 		move(speed , 0);
 		if (getX() > 600 && speed>0)
