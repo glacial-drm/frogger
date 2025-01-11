@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -88,11 +89,25 @@ public abstract class World extends Pane {
     }
     
     public void add(Actor actor) {
-        getChildren().add(actor);
+        Platform.runLater(() -> {
+            getChildren().add(actor);
+        });
     }
 
     public void remove(Actor actor) {
         getChildren().remove(actor);
+    }
+
+    public <A extends Actor> void removeClassObjects(Class<A> cls) {
+        Platform.runLater(() -> {
+            for (Actor n : getObjects(cls)) {
+                if (cls.isInstance(n)) {
+
+                    getChildren().remove(n);
+                    //remove(n);
+                }
+            }
+        });
     }
 
     public <A extends Actor> List<A> getObjects(Class<A> cls) {

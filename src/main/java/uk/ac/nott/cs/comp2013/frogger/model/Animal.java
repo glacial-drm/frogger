@@ -1,6 +1,7 @@
 package uk.ac.nott.cs.comp2013.frogger.model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javafx.event.EventHandler;
 
@@ -24,26 +25,30 @@ public class Animal extends Actor {
 	boolean noMove = false;
 	boolean carDeath = false;
 	boolean waterDeath = false;
-	boolean changeScore = false;
 
 	ArrayList<End> inter = new ArrayList<End>();
 	FroggerUI ui;
 
-	Image imgW1 = new Image("frog-up.png", imgSize, imgSize, true, true);
-	Image imgA1 = new Image("frog-left.png", imgSize, imgSize, true, true);
-	Image imgS1 = new Image("frog-down.png", imgSize, imgSize, true, true);
-	Image imgD1 = new Image("frog-right.png", imgSize, imgSize, true, true);
-	Image imgW2 = new Image("frog-up-jump.png", imgSize, imgSize, true, true);
-	Image imgA2 = new Image("frog-left-jump.png", imgSize, imgSize, true, true);
-	Image imgS2 = new Image("frog-down-jump.png", imgSize, imgSize, true, true);
-	Image imgD2 = new Image("frog-right-jump.png", imgSize, imgSize, true, true);
+	Image imgW1;
+	Image imgA1;
+	Image imgS1;
+	Image imgD1;
+	Image imgW2;
+	Image imgA2;
+	Image imgS2;
+	Image imgD2;
+
+	KeyCode[] keyCodesVert = new KeyCode[2];
+	KeyCode[] keyCodesHor  = new KeyCode[2];
 
 	public Animal(FroggerUI froggerui) {
-		setImage(new Image("frog-up.png", imgSize, imgSize, true, true));
+		ui = froggerui;
+		setFrogSprite();
+		setImage(imgW1);
 		setX(300);
 		setY(679.8+movement);
 
-		ui = froggerui;
+
 
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent event){
@@ -63,10 +68,26 @@ public class Animal extends Actor {
 					setSprite(false, event);
 	        	}
 			}
-			
+
 		});
 	}
-	
+
+	public void setFrogSprite(){
+
+		String[] frogToken = ui.getEquipped_frog().split("[.]");
+		System.out.println(frogToken[0]);
+		String[] frogType = frogToken[0].split("-");
+
+		imgW1 = new Image(ui.getEquipped_frog(), imgSize, imgSize, true, true);
+		imgA1 = new Image("frog-"+frogType[1]+"-left.png", imgSize, imgSize, true, true);
+		imgS1 = new Image("frog-"+frogType[1]+"-down.png", imgSize, imgSize, true, true);
+		imgD1 = new Image("frog-"+frogType[1]+"-right.png", imgSize, imgSize, true, true);
+		imgW2 = new Image("frog-"+frogType[1]+"-up-jump.png", imgSize, imgSize, true, true);
+		imgA2 = new Image("frog-"+frogType[1]+"-left-jump.png", imgSize, imgSize, true, true);
+		imgS2 = new Image("frog-"+frogType[1]+"-down-jump.png", imgSize, imgSize, true, true);
+		imgD2 = new Image("frog-"+frogType[1]+"-right-jump.png", imgSize, imgSize, true, true);
+	}
+
 	@Override
 	public void act(long now) {
 		if (getY()<0 || getY()>734) {
@@ -105,13 +126,19 @@ public class Animal extends Actor {
 			inter = (ArrayList<End>) getIntersectingObjects(End.class);
 			if (getIntersectingObjects(End.class).getFirst().isActivated()) { // In case that home is already activated
 				end--;
-				points-=50;
 			}
-			points+=50;
-			changeScore = true;
+			else{
+				ui.restartTimer();
+			}
 			w=800;
 			getIntersectingObjects(End.class).getFirst().setEnd();
 			end++;
+			if(end == 5){
+				for(End n: ui.getBackground().getObjects(End.class)){
+					n.reset();
+				}
+
+			}
 			setX(300);
 			setY(679.8+movement);
 		}
@@ -139,11 +166,10 @@ public class Animal extends Actor {
 			setY(679.8+movement);
 			carDeath = false;
 			carD = 0;
-			setImage(new Image("froggerUp.png", imgSize, imgSize, true, true));
+			setImage(imgW1);
 			noMove = false;
 			if (points>50) {
 				points-=50;
-				changeScore = true;
 			}
 		}
 	}
@@ -170,79 +196,75 @@ public class Animal extends Actor {
 			setY(679.8+movement);
 			waterDeath = false;
 			carD = 0;
-			setImage(new Image("froggerUp.png", imgSize, imgSize, true, true));
+			setImage(new Image(ui.getEquipped_frog(), imgSize, imgSize, true, true));
 			noMove = false;
 			if (points>50) {
 				points-=50;
-				changeScore = true;
 			}
 		}
 	}
 
 	public void setSprite(boolean jump, KeyEvent event){
+		keyCodesVert[0] = KeyCode.W;
+		keyCodesHor[0] = KeyCode.A;
+		keyCodesVert[1] = KeyCode.S;
+		keyCodesHor[1] = KeyCode.D;
+		
+		if(Objects.equals(ui.getEquipped_frog(), "frog-angry-up.png")){
+			movement = 13.3333333*4;
+		} else if (Objects.equals(ui.getEquipped_frog(), "frog-anti-up.png")) {
+			keyCodesVert[1] = KeyCode.W;
+			keyCodesHor[1] = KeyCode.A;
+			keyCodesVert[0] = KeyCode.S;
+			keyCodesHor[0] = KeyCode.D;
+		}
+
 		if(jump){
-			if (event.getCode() == KeyCode.W) {
+			if (event.getCode() == keyCodesVert[0]) {
 				move(0, movement);
 				ui.addScore(10);
 				setImage(imgW2);
 				jumpFlag = true;
 			}
-			else if (event.getCode() == KeyCode.A) {
+			else if (event.getCode() == keyCodesHor[0]) {
 				move(movementX, 0);
 				setImage(imgA2);
 				jumpFlag = true;
 			}
-			else if (event.getCode() == KeyCode.S) {
+			else if (event.getCode() == keyCodesVert[1]) {
 				move(0, -movement);
 				setImage(imgS2);
 				jumpFlag = true;
 			}
-			else if (event.getCode() == KeyCode.D) {
+			else if (event.getCode() == keyCodesHor[1]) {
 				move(-movementX, 0);
 				setImage(imgD2);
 				jumpFlag = true;
 			}
 		}
 		else{
-			if (event.getCode() == KeyCode.W) {
+			if (event.getCode() == keyCodesVert[0]) {
 				move(0, movement);
 				ui.addScore(10);
-				changeScore = false;
 				setImage(imgW1);
 				jumpFlag = false;
 			}
-			else if (event.getCode() == KeyCode.A) {
+			else if (event.getCode() == keyCodesHor[0]) {
 				move(movementX, 0);
 				setImage(imgA1);
 				jumpFlag = false;
 			}
-			else if (event.getCode() == KeyCode.S) {
+			else if (event.getCode() == keyCodesVert[1]) {
 				move(0, -movement);
 				setImage(imgS1);
 				jumpFlag = false;
 			}
-			else if (event.getCode() == KeyCode.D) {
+			else if (event.getCode() == keyCodesHor[1]) {
 				move(-movementX, 0);
 				setImage(imgD1);
 				jumpFlag = false;
 			}
 		}
-	}
-
-	public boolean getStop() {
-		return end==5;
-	}
-	
-	public int getPoints() {
-		return points;
-	}
-	
-	public boolean changeScore() {
-		if (changeScore) {
-			changeScore = false;
-			return true;
-		}
-		return false;
-		
+		movement = 13.3333333*2;
 	}
 }
