@@ -29,44 +29,15 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 	    background = new MyStage();
 		ui = new FroggerUI();
-		// Start Screen (keep references so we can background.remove() them)
-			// Logo
-			// Select Frog (anti is reverse controls, angry is 2x movement)
-			// Select Difficulty(?)
 
-		background.add(new BackgroundImage("screenstart.png"));
+
 		ui.startGameScreen(background);
-
-		// Game Screen
-//		background.add(new BackgroundImage("screengame.png"));
-//		Level level = new Level(background, ui);
-//		ui.startLevelScreen(background);
-
-		// End Screen ()
-			// Score
-			// Difficulty
-			// Level
-			// (Extension) ENTER NAME AND SAVE TO FILE,
-			// LEADERBOARD SCREEN ON START MENU
-		//background.add(new BackgroundImage("screenend.png"));
 
 		scene = new Scene(background, 600, 800);
 		background.start();
+
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		start();
-
-
-
-	}
-
-	public void start() {
 		background.playMusic();
-    	//createTimer();
-        //timer.start();
-    }
-
-    public void stop() {
-        //timer.stop();
-    }
+	}
 }

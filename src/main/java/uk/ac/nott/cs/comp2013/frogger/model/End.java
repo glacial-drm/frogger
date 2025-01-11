@@ -23,7 +23,11 @@ public class End extends Actor {
 		activated = true;
 		froggerUI.addScore(500);
 	}
-	
+
+	public void reset(){
+		setImage(new Image("End.png", 60, 60, true, true));
+	}
+
 	public boolean isActivated() {
 		return activated;
 	}
