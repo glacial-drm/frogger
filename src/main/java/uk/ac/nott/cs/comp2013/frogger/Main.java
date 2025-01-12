@@ -3,16 +3,9 @@ package uk.ac.nott.cs.comp2013.frogger;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.Background;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import uk.ac.nott.cs.comp2013.frogger.controller.*;
-import uk.ac.nott.cs.comp2013.frogger.model.*;
-import uk.ac.nott.cs.comp2013.frogger.view.FroggerUI;
-import uk.ac.nott.cs.comp2013.frogger.view.Level;
+import uk.ac.nott.cs.comp2013.frogger.view.*;
+import uk.ac.nott.cs.comp2013.frogger.controller.FroggerUI;
 
 
 public class Main extends Application {

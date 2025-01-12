@@ -1,11 +1,10 @@
-package uk.ac.nott.cs.comp2013.frogger.view;
+package uk.ac.nott.cs.comp2013.frogger.controller;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.StackPane;
-import uk.ac.nott.cs.comp2013.frogger.controller.MyStage;
+import uk.ac.nott.cs.comp2013.frogger.view.MyStage;
 import uk.ac.nott.cs.comp2013.frogger.model.BackgroundImage;
 import uk.ac.nott.cs.comp2013.frogger.model.digit;
 
@@ -18,7 +17,7 @@ import java.util.TimerTask;
  * This class derives from the UI and will provide the basic UI elements for
  * Frogger, including the current level and statistics of each Sprite.
  *
- * @author Phillip
+ * @author Phillip ************************************* DON'T FORGET ABOUT ME ****************************************
  *
  */
 public class FroggerUI{
@@ -32,8 +31,8 @@ public class FroggerUI{
 
     private Level level_obj;
 
-    private int level;
-    private digit levelDigit;
+    //private int level; // Running out of time...
+    //private digit levelDigit;
 
     private MyStage background;
 
@@ -189,7 +188,7 @@ public class FroggerUI{
 
     public void startLevelScreen(MyStage background){
         score = 0;
-        level = 1;
+        //level = 1;
         setBackground(background);
 
         // (High)Score Digits

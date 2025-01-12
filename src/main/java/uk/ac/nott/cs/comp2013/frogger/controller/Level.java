@@ -1,15 +1,13 @@
-package uk.ac.nott.cs.comp2013.frogger.view;
+package uk.ac.nott.cs.comp2013.frogger.controller;
 
-import uk.ac.nott.cs.comp2013.frogger.controller.MyStage;
+import uk.ac.nott.cs.comp2013.frogger.view.MyStage;
 import uk.ac.nott.cs.comp2013.frogger.model.*;
-
-import java.util.ArrayList;
 
 public class Level {
     MyStage background;
     FroggerUI ui;
 
-    int level;
+    //int level;
 
     public Level(MyStage stage, FroggerUI froggerUI) {
         background = stage;
@@ -74,12 +72,5 @@ public class Level {
         background.add(new Obstacle("car1Right.png", 400, 597, -difficulty, 50, 50));
         background.add(new Obstacle("car1Right.png", 550, 597, -difficulty, 50, 50));
         background.add(new Obstacle("car1Right.png", 500, 490, -difficulty*5, 50, 50));
-    }
-
-    public int getLevel(){
-        return level;
-    }
-    public void setLevel(int n){
-        level = n;
     }
 }

@@ -1,7 +1,7 @@
 package uk.ac.nott.cs.comp2013.frogger.model;
 
 import javafx.scene.image.Image;
-import uk.ac.nott.cs.comp2013.frogger.view.FroggerUI;
+import uk.ac.nott.cs.comp2013.frogger.controller.FroggerUI;
 
 public class End extends Actor {
 	boolean activated = false;

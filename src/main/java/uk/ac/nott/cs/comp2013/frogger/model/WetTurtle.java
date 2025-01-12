@@ -8,9 +8,8 @@ public class WetTurtle extends Actor {
 	Image t3;
 	Image t4;
 	private int speed;
-	int i = 1;
-	boolean bool = true;
 	boolean sunk = false;
+
 	@Override
 	public void act(long now) {
 

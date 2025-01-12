@@ -33,9 +33,6 @@ public class BackgroundImage extends Actor {
 		return dimY;
 	}
 
-	public void setPath(String string){
-		path = string;
-	}
 	public String getPath(){
 		return path;
 	}
