@@ -22,6 +22,9 @@ public class MyStage extends Pane {
     MediaPlayer mediaPlayer;
     private AnimationTimer t;
 
+    /**
+     * Default Constructor
+     */
     public MyStage() {
 
         sceneProperty().addListener(new ChangeListener<Scene>() {
@@ -65,6 +68,9 @@ public class MyStage extends Pane {
         });
     }
 
+    /**
+     * Used to play music
+     */
     public void playMusic() {
         String musicFile = "src/main/resources/Snake_Charmer.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
@@ -77,11 +83,14 @@ public class MyStage extends Pane {
         mediaPlayer.stop();
     }
 
+    /**
+     * Class that causes each actor within the stage to act on a timer
+     */
     public void createTimer() {
         t = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                act(now);
+
                 List<Actor> actors = getObjects(Actor.class);
 
                 for (Actor anActor : actors) {
@@ -92,25 +101,42 @@ public class MyStage extends Pane {
         };
     }
 
+    /**
+     * Starts the Actor timer specified above
+     */
     public void start() {
         createTimer();
         t.start();
     }
 
+    /**
+     * Stops the Actor timer specified aboves
+     */
     public void stop() {
         t.stop();
     }
 
+    /**
+     * Adds an actor to the stage
+     */
     public void add(Actor actor) {
         Platform.runLater(() -> {
             getChildren().add(actor);
         });
     }
 
+    /**
+     * Removes an actor from the stage
+     */
     public void remove(Actor actor) {
         getChildren().remove(actor);
     }
 
+    /**
+     * Removes an actors of a given Actor subclass from the stage
+     *
+     * @param cls represents the Actor subclass
+     */
     public <A extends Actor> void removeClassObjects(Class<A> cls) {
         Platform.runLater(() -> {
             for (Actor n : getObjects(cls)) {
@@ -123,6 +149,9 @@ public class MyStage extends Pane {
         });
     }
 
+    /**
+     * Used to get objects of a given Actor subclass that have been added to the stage
+     */
     public <A extends Actor> List<A> getObjects(Class<A> cls) {
         ArrayList<A> someArray = new ArrayList<A>();
         for (Node n : getChildren()) {
@@ -131,9 +160,6 @@ public class MyStage extends Pane {
             }
         }
         return someArray;
-    }
-
-    public void act(long now) {
     }
 
 }

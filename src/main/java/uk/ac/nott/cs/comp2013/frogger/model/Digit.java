@@ -2,7 +2,7 @@ package uk.ac.nott.cs.comp2013.frogger.model;
 
 import javafx.scene.image.Image;
 
-public class digit extends Actor {
+public class Digit extends Actor {
 	int dim;
 	Image im1;
 
@@ -10,7 +10,7 @@ public class digit extends Actor {
 	public void act(long now) {
 	}
 	
-	public digit(int n, int dimension, int x, int y) {
+	public Digit(int n, int dimension, int x, int y) {
 		//currently only handles integers, need to handle letters, can create new constructor tbh
 		dim = dimension;
 		setDigit(n);

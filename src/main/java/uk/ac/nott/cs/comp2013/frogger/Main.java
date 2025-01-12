@@ -24,7 +24,7 @@ public class Main extends Application {
 		ui = new FroggerUI();
 
 
-		ui.startGameScreen(background);
+		ui.startSetupScreen(background);
 
 		scene = new Scene(background, 600, 800);
 		background.start();

@@ -3,12 +3,24 @@ package uk.ac.nott.cs.comp2013.frogger.controller;
 import uk.ac.nott.cs.comp2013.frogger.view.MyStage;
 import uk.ac.nott.cs.comp2013.frogger.model.*;
 
+/**
+ * This class handles UI objects related to the gameplay loop experienced by the user, primarily adding Actor subclasses
+ * to the stage
+ *
+ * @author psyda6
+ */
 public class Level {
     MyStage background;
     FroggerUI ui;
 
     //int level;
 
+    /**
+     * Overloaded Constructor
+     *
+     * @param stage represents the stage for the level to be added to
+     * @param froggerUI represents the UI object that handles outcomes caused by the player interacting with the Level
+     */
     public Level(MyStage stage, FroggerUI froggerUI) {
         background = stage;
         ui = froggerUI;
@@ -17,7 +29,9 @@ public class Level {
         startLevel(ui.getDifficulty()+1);
     }
 
-
+    /**
+     * Removes all Actor objects from the Level
+     */
     public void clearLevel(){
         background.removeClassObjects(Log.class);
         background.removeClassObjects(Turtle.class);
@@ -28,6 +42,9 @@ public class Level {
         background.removeClassObjects(Obstacle.class);
     }
 
+    /**
+     * Adds all Actor objects to the Level
+     */
     public void startLevel(int difficulty){
         // Logs
         background.add(new Log("log3.png", 150, 0, 166, -difficulty));

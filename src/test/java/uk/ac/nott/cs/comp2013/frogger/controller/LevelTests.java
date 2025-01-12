@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import uk.ac.nott.cs.comp2013.frogger.view.MyStage;
 import uk.ac.nott.cs.comp2013.frogger.model.*;
 
-class LevelTest {
+class LevelTests {
     MyStage stage;
     FroggerUI froggerUI;
     Level level;

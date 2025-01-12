@@ -19,17 +19,17 @@ public class MainTests {
 
     @Property
     public void testStart() throws Exception {
-//        Platform.startup(() ->{
-//            Stage stage = new Stage();
-//            Main mainApplication = new Main();
-//
-//            try {
-//                mainApplication.start(stage);
-//            } catch (Exception e) {
-//                throw new RuntimeException(e);
-//            }
-//            assertTrue(stage.isShowing());
-//        });
+        Platform.startup(() ->{
+            Stage stage = new Stage();
+            Main mainApplication = new Main();
+
+            try {
+                mainApplication.start(stage);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            assertTrue(stage.isShowing());
+        });
     }
 
 }
